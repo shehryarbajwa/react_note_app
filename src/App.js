@@ -127,7 +127,7 @@ const App = () => {
       })
       .catch(error => {
         setErrorMessage(
-          `Note '${note.content}' was already removed from server`
+          `Note '${note.content}' was removed from server`
         )
         setTimeout(() => {
           setErrorMessage(null)
@@ -146,20 +146,21 @@ const App = () => {
       {user === null ?
         loginForm() :
         <div>
-          <p>{user.name} logged in</p>
-          <Togglable buttonLabel="new note" ref={noteFormRef}>
+          <p>{user.username} logged in</p>
+          <Togglable buttonLabel="New note" ref={noteFormRef}>
             <NoteForm
               onSubmit={addNote}
               value={newNote}
               handleChange={handleNoteChange}
             />
           </Togglable>
+          <button onClick={() => setUser(null)}>Logout</button>
         </div>
       }
 
       <div>
         <button onClick={() => setShowAll(!showAll)}>
-          show {showAll ? 'important' : 'all'}
+          Show {showAll ? 'important' : 'all'}
         </button>
       </div>
       <ul>
